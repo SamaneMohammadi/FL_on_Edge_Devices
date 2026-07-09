@@ -1,9 +1,3 @@
-"""
-All the experiment settings live here so the client, server and the privacy
-accountant read the exact same numbers. Values follow the paper
-(Section IV - Experimental Design, "Parameter Settings").
-"""
-
 # --- Federated setup ---------------------------------------------------------
 NUM_CLIENTS = 5                 # HW T1..T5, one client per physical device
 LOCAL_EPOCHS = 1                # E = 1 local epoch per round
