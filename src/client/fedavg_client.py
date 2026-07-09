@@ -1,14 +1,3 @@
-"""
-Synchronous (FedAvg) client.
-
-Behaviour is exactly the base client - it trains for one round and returns its
-update. The server waits for every selected client before aggregating, so there
-is no staleness to report here.
-
-Run one of these per device:
-    python -m client.fedavg_client --client_id 1 --sigma 1.0 --server 192.168.1.18:8080
-"""
-
 import argparse
 import flwr as fl
 
