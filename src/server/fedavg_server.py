@@ -1,17 +1,3 @@
-"""
-Synchronous FedAvg server.
-
-Standard dataset-size-weighted aggregation
-
-    p_k = N_k / sum_j N_j ,    W_G = sum_k p_k W_k
-
-(Eq. fedavg in the paper). We wrap Flower's FedAvg only to (a) time each round
-and (b) dump per-client accuracy / epsilon to JSON so the analysis scripts have
-everything in one place.
-
-    python -m server.fedavg_server --rounds 60
-"""
-
 import os
 import json
 import time
