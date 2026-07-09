@@ -1,12 +1,3 @@
-"""
-Torch Dataset + loaders for the per-client mel-spectrogram partitions written
-by prepare_data.py.
-
-The features are (N, 128, 108): 128 mel bins, 108 time frames. We feed them to
-the 1D CNN with the 128 mel bins as input channels and the 108 frames as the
-sequence length, so no reshaping is needed beyond wrapping in a tensor.
-"""
-
 import os
 import numpy as np
 import torch
