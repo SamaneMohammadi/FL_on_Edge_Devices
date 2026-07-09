@@ -1,37 +1,3 @@
-"""
-Asynchronous FedAsync server with staleness-aware aggregation.
-
-For every update the server applies, as it arrives, the staleness-weighted rule
-from Xie et al. / the paper (Section III, Algorithm 1):
-
-    tau_k    = t - t_k                 (how many rounds stale this update is)
-    alpha_k  = alpha / (1 + tau_k)     (older updates count less)
-    W_G      <- (1 - alpha_k) * W_G + alpha_k * W_k
-
-`alpha` is the base decay factor, swept over {0.2, 0.4, 0.6} in the paper. The
-update rule above is implemented exactly; the only thing the surrounding harness
-has to get right is producing real staleness `tau_k > 0`.
-
-HOW STALENESS ARISES (important):
-Stock Flower is round-synchronous: by default the server waits for every
-selected client each round, so every client trains on the current global model,
-reports base_round == server_round, and tau is always 0 - even on heterogeneous
-hardware. That defeats the point. To recover true asynchrony we run the server
-straggler-tolerant: it advances a round as soon as `min_fit_clients` updates are
-in (or `round_timeout` elapses), without blocking on the slow devices. Fast
-devices (HW T4/T5) then complete many more rounds than slow ones (HW T1/T2);
-when a slow device finally returns, the global round has moved on, so its
-reported base_round lags and tau_k = t - t_k > 0. This reproduces both the
-participation imbalance and the staleness profile (tau ~ 4, 6, 7 for the slower
-tiers) reported in the paper.
-
-Each client reports the global round it trained on (`base_round`); the server
-computes tau_k = server_round - base_round from that.
-
-    python -m server.fedasync_server --rounds 150 --alpha 0.2 \
-        --min_fit_clients 1 --round_timeout 30
-"""
-
 import os
 import json
 import time
