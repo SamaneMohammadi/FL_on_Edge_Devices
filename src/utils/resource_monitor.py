@@ -1,13 +1,3 @@
-"""
-Per-client resource monitoring - the numbers behind Table II (CPU time, RAM %)
-and the training-time / exchange-time figures.
-
-This is intentionally simple: we sample psutil around the local training call so
-each device records its own user/system CPU time and memory footprint. On the
-real testbed these differ a lot between HW T1 (Raspberry Pi 3) and HW T5
-(Raspberry Pi 4 8GB), which is the whole point.
-"""
-
 import time
 import psutil
 
