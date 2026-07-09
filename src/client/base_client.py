@@ -1,18 +1,3 @@
-"""
-Base client shared by FedAvg and FedAsync.
-
-It owns everything that does not depend on the aggregation mode:
-  - load this client's data and build the model
-  - run E local epochs of DP-SGD (clip to C, add N(0, sigma^2 C^2 I))
-  - update the per-client Moments Accountant once per round and report epsilon
-  - measure CPU time / RAM so we can reproduce Table II
-  - read/write parameters in the numpy format Flower expects
-
-The FedAvg and FedAsync clients subclass this and only change what extra
-information they report to the server (FedAsync also reports its local round so
-the server can compute staleness).
-"""
-
 from collections import OrderedDict
 
 import numpy as np
