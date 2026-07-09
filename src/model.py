@@ -1,16 +1,3 @@
-"""
-Lightweight 1D CNN for speech emotion recognition.
-
-This is the architecture from the paper (Section III-A): two 1D conv blocks
-(64 then 128 filters, kernel 5) each with normalization + ReLU + max-pool +
-dropout, followed by a dense layer and the classifier.
-
-Note on normalization: the paper uses Group Normalization, NOT batch norm.
-That is deliberate - DP-SGD needs per-sample gradients, and batch norm couples
-samples within a batch, so Opacus rejects it. GroupNorm keeps the model
-DP-compatible while behaving similarly.
-"""
-
 import torch
 import torch.nn as nn
 
