@@ -1,16 +1,3 @@
-"""
-Run the whole thing on a single machine with Flower's simulation engine.
-
-This is the easiest way to reproduce the experiments without the physical
-testbed: it spins up all five clients in-process and runs either FedAvg or
-FedAsync. On real hardware you would instead start server/ and client/ on
-separate devices (see the README), which is what produces the heterogeneity
-and staleness effects the paper studies.
-
-    python simulate.py --mode fedavg   --sigma 1.0 --rounds 60
-    python simulate.py --mode fedasync --sigma 1.0 --rounds 150 --alpha 0.2
-"""
-
 import argparse
 
 import flwr as fl
