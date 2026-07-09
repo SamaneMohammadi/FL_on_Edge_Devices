@@ -1,8 +1,3 @@
-"""
-Small helpers for evaluation and for writing the per-round CSV logs that the
-plotting scripts read.
-"""
-
 import os
 import csv
 import torch
