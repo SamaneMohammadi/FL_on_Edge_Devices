@@ -1,20 +1,3 @@
-"""
-Turn the raw CREMA-D wavs into mel-spectrogram features and split them into
-five IID client partitions (one per device).
-
-This follows the paper's data setup (Section IV, "Dataset"):
-  - keep the four most frequent emotions: Neutral, Happy, Angry, Sad
-  - ~5882 clips after dropping Fear and Disgust
-  - five IID partitions, each with an 80/20 train/test split
-
-Unlike an earlier version of this script we do NOT add augmentation or client
-overlap here - the paper uses clean IID partitions so that the only thing
-varying between clients is the hardware, not the data.
-
-Usage:
-    python prepare_data.py --data_path ./CREMA-D --out_dir ./client_data
-"""
-
 import os
 import argparse
 import numpy as np
